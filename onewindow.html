@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Window | Punjab Digital Services | ون ونڈو</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Nastaliq+Urdu:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #0a3d1f;
+    --green-mid: #145a32;
+    --green-light: #1e7e44;
+    --gold: #c9a84c;
+    --gold-light: #f0c96b;
+    --gold-pale: #fdf3d0;
+    --cream: #faf6e8;
+    --white: #ffffff;
+    --text-dark: #0a1f0e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    font-family: 'Raleway', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ---- HEADER ---- */
+  header {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, #0d4a27 100%);
+    border-bottom: 4px solid var(--gold);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 300px; height: 300px;
+    border: 40px solid rgba(201,168,76,0.08);
+    border-radius: 50%;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border: 60px solid rgba(201,168,76,0.06);
+    border-radius: 50%;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-badge {
+    background: var(--gold);
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 18px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+
+  .header-title-en {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: var(--gold-light);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+
+  .header-title-ur {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    color: var(--cream);
+    margin-top: 8px;
+    direction: rtl;
+    line-height: 1.8;
+  }
+
+  .header-sub {
+    margin-top: 14px;
+    font-size: 13px;
+    color: rgba(240,201,107,0.75);
+    letter-spacing: 1px;
+  }
+
+  .header-sub span {
+    direction: rtl;
+    font-family: 'Noto Nastaliq Urdu', serif;
+  }
+
+  /* ---- HERO STRIP ---- */
+  .hero-strip {
+    background: var(--gold);
+    padding: 14px 24px;
+    text-align: center;
+  }
+  .hero-strip p {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green-dark);
+    letter-spacing: 0.5px;
+  }
+  .hero-strip .ur {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    direction: rtl;
+    font-size: 15px;
+    margin-top: 2px;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    background: var(--green-dark);
+    border-bottom: 2px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  nav ul li a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--gold-light);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, color 0.2s;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+  nav ul li a:hover {
+    background: var(--gold);
+    color: var(--green-dark);
+  }
+
+  /* ---- MAIN CONTENT ---- */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 20px;
+  }
+
+  /* ---- SECTION TITLE ---- */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .section-label::before, .section-label::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .section-label h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--green-mid);
+    white-space: nowrap;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ---- CARDS GRID ---- */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 28px;
+    margin-bottom: 60px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(10,61,31,0.1);
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 40px rgba(10,61,31,0.18);
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+    padding: 18px 20px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .card-num {
+    background: var(--gold);
+    color: var(--green-dark);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    flex: 1;
+  }
+  .card-title h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold-light);
+    font-weight: 700;
+  }
+  .card-title .ur-title {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    direction: rtl;
+    font-size: 0.95rem;
+    color: rgba(240,201,107,0.8);
+    margin-top: 3px;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    opacity: 0.85;
+  }
+
+  .card-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .info-block {
+    background: var(--gold-pale);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+  }
+  .info-block h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--green-mid);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .info-block p {
+    font-size: 13px;
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+  .info-block .ur-text {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    direction: rtl;
+    font-size: 14px;
+    color: var(--green-dark);
+    display: block;
+    margin-top: 5px;
+    line-height: 2;
+  }
+
+  .services-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .service-tag {
+    background: var(--green-dark);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .steps-list {
+    counter-reset: steps;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .steps-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    counter-increment: steps;
+  }
+  .steps-list li::before {
+    content: counter(steps);
+    background: var(--gold);
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 800;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .card-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-dark);
+    color: var(--gold-light);
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: auto;
+    transition: background 0.2s;
+    border: 2px solid var(--gold);
+  }
+  .card-link-btn:hover {
+    background: var(--gold);
+    color: var(--green-dark);
+  }
+  .card-link-btn .ur {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    direction: rtl;
+    font-size: 13px;
+  }
+
+  /* ---- WHY SECTION ---- */
+  .why-section {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+    border: 3px solid var(--gold);
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin-bottom: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+  @media(max-width: 640px) {
+    .why-section { grid-template-columns: 1fr; }
+  }
+  .why-item {
+    padding: 10px;
+  }
+  .why-icon {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+  }
+  .why-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold-light);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .why-title-ur {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    direction: rtl;
+    font-size: 14px;
+    color: rgba(240,201,107,0.75);
+    margin-bottom: 8px;
+  }
+  .why-desc {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+  }
+
+  /* ---- QR SECTION ---- */
+  .qr-section {
+    background: var(--gold-pale);
+    border: 2px solid var(--gold);
+    border-radius: 14px;
+    padding: 36px 28px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+  .qr-box {
+    background: var(--white);
+    border: 3px solid var(--gold);
+    border-radius: 12px;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 3rem;
+  }
+  .qr-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--green-dark);
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+  .qr-info .ur {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    direction: rtl;
+    font-size: 1.1rem;
+    color: var(--green-mid);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .qr-url {
+    display: inline-block;
+    background: var(--green-dark);
+    color: var(--gold-light);
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+  }
+  .qr-url:hover { background: var(--gold); color: var(--green-dark); }
+
+  /* ---- FUTURE ---- */
+  .future-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 18px;
+    margin-bottom: 60px;
+  }
+  .future-item {
+    background: var(--white);
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    padding: 22px 18px;
+    text-align: center;
+  }
+  .future-item .icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .future-item h4 { font-size: 13px; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; }
+  .future-item .ur { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; font-size: 13px; color: var(--green-mid); }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--green-dark);
+    border-top: 4px solid var(--gold);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  footer p {
+    color: rgba(240,201,107,0.7);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  footer .ur {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    direction: rtl;
+    font-size: 14px;
+    color: rgba(240,201,107,0.8);
+    display: block;
+    margin-top: 4px;
+  }
+  footer strong {
+    color: var(--gold-light);
+  }
+
+  /* ---- HASHTAGS ---- */
+  .hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .hashtag {
+    background: rgba(201,168,76,0.15);
+    color: var(--gold-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ---- SCROLL ANIMATION ---- */
+  .card, .why-section, .qr-section, .future-item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.5s forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .card:nth-child(4) { animation-delay: 0.4s; }
+  .card:nth-child(5) { animation-delay: 0.5s; }
+  .card:nth-child(6) { animation-delay: 0.6s; }
+
+  @media(max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    nav ul li a { font-size: 10px; padding: 10px 10px; }
+    .why-section { padding: 28px 18px; }
+    .qr-section { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-badge">🏛️ Punjab Government Digital Services</div>
+    <div class="header-title-en">ONE WINDOW</div>
+    <div class="header-title-ur">ون ونڈو — پنجاب ڈیجیٹل سروسز</div>
+    <div class="header-sub">Your All-in-One Punjab Digital Portal &nbsp;|&nbsp; <span>آپ کی ایک ہی جگہ تمام سہولتیں</span></div>
+  </div>
+</header>
+
+<!-- HERO STRIP -->
+<div class="hero-strip">
+  <p>🌟 All Punjab Government Digital Services — One Place, One Link, Zero Confusion</p>
+  <p class="ur">تمام پنجاب حکومت کی ڈیجیٹل سروسز — ایک جگہ، ایک لنک، کوئی پریشانی نہیں</p>
+</div>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li><a href="#dastak">Maryam Ki Dastak</a></li>
+    <li><a href="#himmat">Himmat Card</a></li>
+    <li><a href="#pakid">Pak ID App</a></li>
+    <li><a href="#talk2cm">Talk 2 CM</a></li>
+    <li><a href="#ekhidmat">e-Khidmat Markaz</a></li>
+    <li><a href="#future">Future Innovations</a></li>
+    <li><a href="#access">Access Portal</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- WHY ONE WINDOW -->
+  <div class="section-label"><h2>Why One Window? — ون ونڈو کیوں؟</h2></div>
+  <div class="why-section">
+    <div class="why-item">
+      <div class="why-icon">🔗</div>
+      <div class="why-title">All Links in One Place</div>
+      <div class="why-title-ur">تمام لنکس ایک جگہ</div>
+      <div class="why-desc">No need to search 10 different websites. Everything consolidated here.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">⏱️</div>
+      <div class="why-title">Save Your Time</div>
+      <div class="why-title-ur">وقت بچائیں</div>
+      <div class="why-desc">Apply from home, track your applications, no office visits required.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">📱</div>
+      <div class="why-title">Mobile Optimized</div>
+      <div class="why-title-ur">موبائل کے لیے بہترین</div>
+      <div class="why-desc">Works perfectly on your phone. Bookmark it for quick access anytime.</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="section-label"><h2>Our 6 Services — 6 سہولتیں</h2></div>
+
+  <div class="cards-grid">
+
+    <!-- 1: DASTAK -->
+    <div class="card" id="dastak">
+      <div class="card-header">
+        <div class="card-num">1</div>
+        <div class="card-title">
+          <h3>Maryam Ki Dastak</h3>
+          <div class="ur-title">مریم کی دستک (ڈور اسٹیپ سروس)</div>
+        </div>
+        <div class="card-icon">🚪</div>
+      </div>
+      <div class="card-body">
+        <div class="info-block">
+          <h4>What is it? / کیا ہے؟</h4>
+          <p>Government documents delivered at your doorstep. Apply from home without visiting any office.</p>
+          <span class="ur-text">گھر بیٹھے سرکاری دستاویزات حاصل کریں۔ کسی دفتر جانے کی ضرورت نہیں۔</span>
+        </div>
+        <div class="info-block">
+          <h4>Services Available / دستیاب سروسز</h4>
+          <div class="services-list">
+            <span class="service-tag">Domicile Certificate</span>
+            <span class="service-tag">Birth Certificate</span>
+            <span class="service-tag">Vehicle Transfer</span>
+            <span class="service-tag">Character Certificate</span>
+          </div>
+        </div>
+        <div class="info-block">
+          <h4>How to Use / کیسے استعمال کریں</h4>
+          <ol class="steps-list">
+            <li>Download the Dastak App / ایپ ڈاؤن لوڈ کریں</li>
+            <li>Verify with Biometrics / بایومیٹرک تصدیق کریں</li>
+            <li>Apply from Home! / گھر سے درخواست دیں</li>
+          </ol>
+        </div>
+        <a href="https://dastak.punjab.gov.pk" target="_blank" class="card-link-btn">
+          🌐 Visit Dastak Portal &nbsp;|&nbsp; <span class="ur">دستک پورٹل</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2: HIMMAT CARD -->
+    <div class="card" id="himmat">
+      <div class="card-header">
+        <div class="card-num">2</div>
+        <div class="card-title">
+          <h3>Himmat Card</h3>
+          <div class="ur-title">ہمت کارڈ (سوشل ویلفیئر وظیفہ)</div>
+        </div>
+        <div class="card-icon">💳</div>
+      </div>
+      <div class="card-body">
+        <div class="info-block">
+          <h4>What is it? / کیا ہے؟</h4>
+          <p>A social welfare ATM card providing financial stipend support to deserving families and persons with disabilities.</p>
+          <span class="ur-text">مستحق خاندانوں اور معذور افراد کو مالی امداد فراہم کرنے والا سوشل ویلفیئر کارڈ۔</span>
+        </div>
+        <div class="info-block">
+          <h4>Who Can Apply? / کون درخواست دے سکتا ہے؟</h4>
+          <p>Persons with disabilities, low-income families, senior citizens registered under Punjab Social Protection Authority.</p>
+          <span class="ur-text">معذور افراد، کم آمدنی والے خاندان، پنجاب سوشل پروٹیکشن اتھارٹی میں رجسٹرڈ بزرگ شہری۔</span>
+        </div>
+        <div class="info-block">
+          <h4>Benefits / فوائد</h4>
+          <p>Monthly financial support directly deposited on the ATM card. Usable at any ATM across Punjab.</p>
+          <span class="ur-text">ماہانہ مالی امداد براہ راست ATM کارڈ پر۔ پنجاب بھر میں کسی بھی ATM پر استعمال کریں۔</span>
+        </div>
+        <a href="https://pspa.punjab.gov.pk" target="_blank" class="card-link-btn">
+          🌐 PSPA Portal &nbsp;|&nbsp; <span class="ur">پی ایس پی اے پورٹل</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 3: PAK ID APP -->
+    <div class="card" id="pakid">
+      <div class="card-header">
+        <div class="card-num">3</div>
+        <div class="card-title">
+          <h3>Pak ID App</h3>
+          <div class="ur-title">پاک آئی ڈی ایپ (CNIC اور دستاویزات)</div>
+        </div>
+        <div class="card-icon">🪪</div>
+      </div>
+      <div class="card-body">
+        <div class="info-block">
+          <h4>What is it? / کیا ہے؟</h4>
+          <p>Official NADRA app for CNIC-related services. Apply, renew, and verify your ID card digitally with biometric authentication.</p>
+          <span class="ur-text">NADRA کی سرکاری ایپ جس سے CNIC کی خدمات حاصل کریں۔ بایومیٹرک تصدیق کے ساتھ ڈیجیٹل سہولت۔</span>
+        </div>
+        <div class="info-block">
+          <h4>Key Features / خصوصیات</h4>
+          <div class="services-list">
+            <span class="service-tag">Instant Biometrics</span>
+            <span class="service-tag">Secure Data</span>
+            <span class="service-tag">Avoid Long Queues</span>
+            <span class="service-tag">CNIC Renewal</span>
+          </div>
+        </div>
+        <div class="info-block">
+          <h4>How to Use / کیسے استعمال کریں</h4>
+          <ol class="steps-list">
+            <li>Download Pak ID App / پاک آئی ڈی ایپ ڈاؤن لوڈ کریں</li>
+            <li>Verify with Biometrics / بایومیٹرک تصدیق کریں</li>
+            <li>Apply for services / خدمات کے لیے درخواست دیں</li>
+          </ol>
+        </div>
+        <a href="https://id.nadra.gov.pk" target="_blank" class="card-link-btn">
+          🌐 Pak ID / NADRA &nbsp;|&nbsp; <span class="ur">پاک آئی ڈی</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 4: TALK 2 CM -->
+    <div class="card" id="talk2cm">
+      <div class="card-header">
+        <div class="card-num">4</div>
+        <div class="card-title">
+          <h3>'Talk 2 CM' Portal</h3>
+          <div class="ur-title">ٹاک ٹو سی ایم پورٹل</div>
+        </div>
+        <div class="card-icon">🗣️</div>
+      </div>
+      <div class="card-body">
+        <div class="info-block">
+          <h4>What is it? / کیا ہے؟</h4>
+          <p>A direct communication portal to the Chief Minister's Office. Share ideas, policy feedback, and grievances directly.</p>
+          <span class="ur-text">وزیراعلیٰ آفس سے براہ راست رابطے کا پورٹل۔ اپنی شکایات، آئیڈیاز اور تجاویز سیدھے بھیجیں۔</span>
+        </div>
+        <div class="info-block">
+          <h4>You Can Do / آپ کر سکتے ہیں</h4>
+          <div class="services-list">
+            <span class="service-tag">Share Ideas</span>
+            <span class="service-tag">Policy Feedback</span>
+            <span class="service-tag">File Grievances</span>
+            <span class="service-tag">Real-time Tracking</span>
+          </div>
+        </div>
+        <div class="info-block">
+          <h4>Direct Link / ڈائریکٹ لنک</h4>
+          <p>Your voice goes directly to the Chief Minister's Office. A real-time tracking ID is provided.</p>
+          <span class="ur-text">آپ کی آواز سیدھی وزیراعلیٰ آفس تک پہنچتی ہے۔ ریئل ٹائم ٹریکنگ آئی ڈی ملتی ہے۔</span>
+        </div>
+        <a href="https://talk2cm.punjab.gov.pk" target="_blank" class="card-link-btn">
+          🌐 talk2cm.punjab.gov.pk &nbsp;|&nbsp; <span class="ur">ویب سائٹ کھولیں</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 5: E-KHIDMAT MARKAZ -->
+    <div class="card" id="ekhidmat">
+      <div class="card-header">
+        <div class="card-num">5</div>
+        <div class="card-title">
+          <h3>e-Khidmat Markaz</h3>
+          <div class="ur-title">ای خدمت مرکز (ون ونڈو سولیوشن)</div>
+        </div>
+        <div class="card-icon">🏢</div>
+      </div>
+      <div class="card-body">
+        <div class="info-block">
+          <h4>What is it? / کیا ہے؟</h4>
+          <p>Punjab's One-Window service center providing 50+ government services under one roof — both online and in-person.</p>
+          <span class="ur-text">پنجاب کا ون ونڈو سروس سینٹر جہاں 50 سے زائد سرکاری خدمات ایک ہی چھت تلے ملتی ہیں۔</span>
+        </div>
+        <div class="info-block">
+          <h4>Services Available / خدمات</h4>
+          <div class="services-list">
+            <span class="service-tag">CNIC Services</span>
+            <span class="service-tag">Domicile</span>
+            <span class="service-tag">Property Records</span>
+            <span class="service-tag">Driving License</span>
+            <span class="service-tag">Birth/Death Cert.</span>
+            <span class="service-tag">Utility Bills</span>
+          </div>
+        </div>
+        <div class="info-block">
+          <h4>How to Access / کیسے جائیں</h4>
+          <p>Visit your nearest e-Khidmat Markaz or apply online. Centers available in all districts of Punjab.</p>
+          <span class="ur-text">قریبی ای خدمت مرکز جائیں یا آن لائن درخواست دیں۔ پنجاب کے ہر ضلع میں مراکز موجود ہیں۔</span>
+        </div>
+        <a href="https://ekhidmat.punjab.gov.pk" target="_blank" class="card-link-btn">
+          🌐 e-Khidmat Portal &nbsp;|&nbsp; <span class="ur">ای خدمت پورٹل</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 6: OTHER DIGITAL SERVICES -->
+    <div class="card" id="other">
+      <div class="card-header">
+        <div class="card-num">+</div>
+        <div class="card-title">
+          <h3>More Digital Services</h3>
+          <div class="ur-title">مزید ڈیجیٹل سروسز</div>
+        </div>
+        <div class="card-icon">🌐</div>
+      </div>
+      <div class="card-body">
+        <div class="info-block">
+          <h4>Land Records / زمین کے ریکارڈ</h4>
+          <p>Check your land records online via Punjab Land Records Authority (PLRA).</p>
+          <span class="ur-text">پنجاب لینڈ ریکارڈ اتھارٹی سے آن لائن اپنی زمین کا ریکارڈ چیک کریں۔</span>
+        </div>
+        <div class="info-block">
+          <h4>Punjab Rozgar Scheme / روزگار اسکیم</h4>
+          <p>Apply for interest-free loans and employment programs through Punjab government portals.</p>
+          <span class="ur-text">پنجاب حکومت کے پورٹلز سے سود سے پاک قرضوں کے لیے درخواست دیں۔</span>
+        </div>
+        <div class="info-block">
+          <h4>Health Services / صحت کی سہولتیں</h4>
+          <p>Punjab Health Card (Sehat Sahulat) and hospital information available online.</p>
+          <span class="ur-text">پنجاب ہیلتھ کارڈ اور ہسپتال کی معلومات آن لائن دستیاب ہیں۔</span>
+        </div>
+        <a href="https://punjab.gov.pk" target="_blank" class="card-link-btn">
+          🌐 Punjab Gov Portal &nbsp;|&nbsp; <span class="ur">پنجاب پورٹل</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FUTURE INNOVATIONS -->
+  <div id="future">
+    <div class="section-label"><h2>Future Innovations — مستقبل کی اختراعات</h2></div>
+    <div class="future-grid">
+      <div class="future-item">
+        <div class="icon">🚦</div>
+        <h4>Smart Traffic Management</h4>
+        <div class="ur">سمارٹ ٹریفک مینجمنٹ</div>
+      </div>
+      <div class="future-item">
+        <div class="icon">📋</div>
+        <h4>Online Land Records (P-LRA Expansion)</h4>
+        <div class="ur">آن لائن لینڈ ریکارڈز</div>
+      </div>
+      <div class="future-item">
+        <div class="icon">🎓</div>
+        <h4>New Youth Skill Portals</h4>
+        <div class="ur">نوجوانوں کے لیے اسکل پورٹلز</div>
+      </div>
+      <div class="future-item">
+        <div class="icon">🚁</div>
+        <h4>Drone Delivery Services</h4>
+        <div class="ur">ڈرون ڈیلیوری سروسز</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCESS SECTION -->
+  <div id="access">
+    <div class="section-label"><h2>Access One Window — ون ونڈو تک رسائی</h2></div>
+    <div class="qr-section">
+      <div class="qr-box">📱</div>
+      <div class="qr-info">
+        <h3>One Window — Punjab Digital Portal</h3>
+        <span class="ur">ون ونڈو — پنجاب ڈیجیٹل پورٹل</span>
+        <p style="font-size:13px; color: var(--green-mid); margin-bottom: 12px;">Access all Punjab Government digital services from one single platform. Bookmark it, share it, use it!</p>
+        <p style="font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; font-size: 14px; color: var(--green-mid); margin-bottom: 14px;">تمام پنجاب سرکاری ڈیجیٹل سروسز ایک پلیٹ فارم سے۔ بک مارک کریں، شیئر کریں، استعمال کریں!</p>
+        <a href="https://onewindow.punjab.gov.pk" target="_blank" class="qr-url">🌐 onewindow.punjab.gov.pk</a>
+        <a href="https://talk2cm.punjab.gov.pk" target="_blank" class="qr-url">🗣️ talk2cm.punjab.gov.pk</a>
+        <a href="https://dastak.punjab.gov.pk" target="_blank" class="qr-url">🚪 Dastak App</a>
+        <a href="https://id.nadra.gov.pk" target="_blank" class="qr-url">🪪 Pak ID / NADRA</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="hashtags">
+    <span class="hashtag">#DigitalPunjab</span>
+    <span class="hashtag">#OneWindow</span>
+    <span class="hashtag">#AwarenessCampaign</span>
+    <span class="hashtag">#UET_CEE</span>
+    <span class="hashtag">#PunjabGovernment</span>
+  </div>
+  <p>
+    <strong>One Window — Punjab Digital Services Portal</strong><br>
+    Awareness Campaign by <strong>UET CEE Students</strong> — Civil Engineering & Environment Dept.<br>
+    <span class="ur">ون ونڈو — پنجاب ڈیجیٹل سروسز پورٹل | یو ای ٹی سی ای ای طلبا کی آگاہی مہم</span>
+  </p>
+  <p style="margin-top: 12px; font-size: 11px;">This website is for awareness purposes only. All linked portals are official Punjab Government platforms.</p>
+</footer>
+
+</body>
+</html>
